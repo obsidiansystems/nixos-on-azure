@@ -88,7 +88,7 @@ fi
 # DEFAULTS                                         #
 ####################################################
 
-location_d="${location:-"westeurope"}"
+location_d="${location:-"westus2"}"
 
 ####################################################
 # PUT IMAGE INTO AZURE CLOUD                       #
@@ -120,6 +120,7 @@ if ! az disk show -g "${resource_group}" -n "${img_name}" &>/dev/null; then
   az disk create \
     --resource-group "${resource_group}" \
     --name "${img_name}" \
+    --location "${location_d}" \
     --hyper-v-generation V2 \
     --upload-type Upload --upload-size-bytes "${bytes}"
 
@@ -148,6 +149,7 @@ if ! az image show -g "${resource_group}" -n "${img_name}" &>/dev/null; then
     --resource-group "${resource_group}" \
     --name "${img_name}" \
     --source "${diskid}" \
+    --location "${location_d}" \
     --hyper-v-generation V2 \
     --os-type "linux" >/dev/null
 fi

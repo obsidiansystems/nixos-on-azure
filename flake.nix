@@ -3,7 +3,7 @@
 
   outputs = { nixos, ... }:
     let
-      username = "rudesome";
+      username = "azureuser";
       system = "x86_64-linux";
       pkgs = import nixos { inherit system; };
     in
